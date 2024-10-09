@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+  namespace: scottyfops
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: my-app
+        image: scottyfops/assignment:v2
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        env:
+        - name: ENV_VALUE
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: envValue
+        - name: CONFIG_VALUE
+          valueFrom:
+            configMapKeyRef:
+              name: my-config
+              key: configValue
+        - name: SECRET_VALUE
+          valueFrom:
+            secretKeyRef:
+              name: my-secret
+              key: secretValue
