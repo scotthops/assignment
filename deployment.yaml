@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: my-app
-        image: scottyfops/assignment:v2
+        image: scottyfops/assignment:v4
         imagePullPolicy: Always
         ports:
         - containerPort: 8080

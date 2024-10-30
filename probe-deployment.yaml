@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: probe-app
+  namespace: scottyfops
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: probe-app
+  template:
+    metadata:
+      labels:
+        app: probe-app
+    spec:
+      containers:
+      - name: probe-service
+        image: busybox
+        command: ["sh", "-c", "while true; do echo -e 'HTTP/1.1 200 OK\n\ntrue' | nc -l -p 30010; done"]
+        ports:
+        - containerPort: 30010

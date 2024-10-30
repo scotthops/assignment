@@ -1,0 +1,5 @@
+FROM node:14
+WORKDIR /app
+COPY probe.js .
+RUN npm install express
+CMD ["node", "probe.js"]

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: probe-app
+  namespace: scottyfops
+spec:
+  selector:
+    app: probe-app
+  ports:
+  - protocol: TCP
+    port: 30010       # External port
+    targetPort: 30010 # Port on the probe container
+  type: ClusterIP
